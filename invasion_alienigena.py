@@ -1,4 +1,5 @@
 import pygame
+from pygame.sprite import Group
 
 from configuraciones import Configuraciones
 
@@ -16,14 +17,17 @@ def run_game():
 	pygame.display.set_caption("Invasión Alien")
 
 	# Crea una nave
-	nave = Nave(pantalla)
+	nave = Nave(ai_configuraciones, pantalla)
+	# Crea un grupo para almacenar las balas
+	balas = Group()
 
 	# Iniciar el bucle principal del juego
 	while True:
 
 		# Escuchar eventos de teclado o ratón
-		fj.verificar_eventos(nave)
+		fj.verificar_eventos(ai_configuraciones, pantalla, nave, balas)
 		nave.update()
-		fj.actualizar_pantalla(ai_configuraciones, pantalla, nave)
+		balas.update()
+		fj.actualizar_pantalla(ai_configuraciones, pantalla, nave, balas)
 
 run_game()
