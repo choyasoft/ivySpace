@@ -10,10 +10,8 @@ def verificar_eventos_keydown(event, ai_configuraciones, pantalla, nave, balas):
 	elif event.key == pygame.K_LEFT:
 		nave.moving_left = True
 	elif event.key == pygame.K_SPACE:
-		# Crea una nueva bala y la agrega al grupo de balas
-		nueva_bala = Bala(ai_configuraciones, pantalla, nave)
-		balas.add(nueva_bala)
-
+		fuego_bala(ai_configuraciones, pantalla, nave, balas)
+		
 def verificar_eventos_keyup(event, nave):
 	"""Responde a las pulsaciones de teclas"""
 	if event.key == pygame.K_RIGHT:
@@ -46,3 +44,20 @@ def actualizar_pantalla(ai_configuraciones, pantalla, nave, balas):
 
 	# Hacer visible la pantalla dibujada más reciente		
 	pygame.display.flip()
+
+def update_balas(balas):
+	"""Docstring Actualiza la posición de las balas y elimina las antiguas"""
+	# Actualiza las posiciones de las balas
+	balas.update()
+
+	# Eliminar las balas que han desaparecido
+	for bala in balas.copy():
+		if bala.rect.bottom <= 0:
+			balas.remove(bala)
+
+def fuego_bala(ai_configuraciones, pantalla, nave, balas):
+	"""Dispara una bala si aún no ha alcanzado el límite"""
+	# Crea una nueva bala y la agrega al grupo de balas
+	if len(balas) < ai_configuraciones.balas_allowed:
+		nueva_bala = Bala(ai_configuraciones, pantalla, nave)
+		balas.add(nueva_bala)

@@ -12,8 +12,8 @@ class Configuraciones():
 		self.factor_velocidad_nave = 0.4
 
 		# Configuraciones de balas
-		self.bala_factor_velocidad = 1
+		self.bala_factor_velocidad = 0.5
 		self.bala_width = 3
 		self.bala_height = 15
 		self.bala_color = 60, 60, 60
-		
+		self.balas_allowed = 3
