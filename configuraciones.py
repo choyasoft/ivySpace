@@ -17,3 +17,9 @@ class Configuraciones():
 		self.bala_height = 15
 		self.bala_color = 60, 60, 60
 		self.balas_allowed = 3
+
+		# Configuraciones de enemigo
+		self.alien_speed_factor = 0.2
+		self.fleet_drop_speed = 5
+		# fleet_direction, cuando es 1 representa a la derecha. Cuando es -1 rep a la izquierda.
+		self.fleet_direction = 1

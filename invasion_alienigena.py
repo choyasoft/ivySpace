@@ -16,10 +16,13 @@ def run_game():
 		(ai_configuraciones.screen_width, ai_configuraciones.screen_height))
 	pygame.display.set_caption("Invasión Alien")
 
-	# Crea una nave
+	# Crea una nave, un grupo de balas y un grupo de enemigos
 	nave = Nave(ai_configuraciones, pantalla)
-	# Crea un grupo para almacenar las balas
 	balas = Group()
+	aliens = Group()
+
+	# Crea la flota de enemigos
+	fj.crear_flota(ai_configuraciones, pantalla, nave, aliens)
 
 	# Iniciar el bucle principal del juego
 	while True:
@@ -27,7 +30,8 @@ def run_game():
 		# Escuchar eventos de teclado o ratón
 		fj.verificar_eventos(ai_configuraciones, pantalla, nave, balas)
 		nave.update()
-		fj.update_balas(balas)
-		fj.actualizar_pantalla(ai_configuraciones, pantalla, nave, balas)
+		fj.update_balas(aliens, balas)
+		fj.update_aliens(ai_configuraciones, aliens)
+		fj.actualizar_pantalla(ai_configuraciones, pantalla, nave, aliens, balas)
 
 run_game()
