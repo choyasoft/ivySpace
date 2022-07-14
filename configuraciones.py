@@ -10,6 +10,7 @@ class Configuraciones():
 		
 		# Configuraciones de la nave
 		self.factor_velocidad_nave = 0.4
+		self.cantidad_naves = 3
 
 		# Configuraciones de balas
 		self.bala_factor_velocidad = 0.9
