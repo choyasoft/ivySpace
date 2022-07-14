@@ -42,6 +42,9 @@ def check_play_button(ai_configuraciones, pantalla, estadisticas, play_button, n
 	"""Inicia la partida cuando el jugador pulsa en Play"""
 	button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
 	if button_clicked and not estadisticas.game_active:
+		# Restablece la config del juego
+		ai_configuraciones.inicializa_configuraciones_dinamicas()
+		
 		# Ocultar el cursor del mouse
 		pygame.mouse.set_visible(False)
 
