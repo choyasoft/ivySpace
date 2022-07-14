@@ -97,6 +97,7 @@ def check_bala_alien_collisions(ai_configuraciones, pantalla, nave, aliens, bala
 	if len(aliens) == 0:
 		# Destruye las balas existentes y crea una nueva flota
 		balas.empty()
+		ai_configuraciones.aumentar_velocidad()
 		crear_flota(ai_configuraciones, pantalla, nave, aliens)
 
 
