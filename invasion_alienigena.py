@@ -5,6 +5,8 @@ from configuraciones import Configuraciones
 
 from estadisticas import Estadisticas
 
+from button import Button
+
 from nave import Nave
 
 import funciones_juegos as fj
@@ -17,6 +19,9 @@ def run_game():
 	pantalla = pygame.display.set_mode(
 		(ai_configuraciones.screen_width, ai_configuraciones.screen_height))
 	pygame.display.set_caption("Invasión Alien")
+
+	# Crea un botón de Play
+	play_button = Button(ai_configuraciones, pantalla, "Play")
 
 	# Crea una instancia para guardar estadísticas del juego
 	estadisticas = Estadisticas(ai_configuraciones)
@@ -34,13 +39,13 @@ def run_game():
 	while True:
 
 		# Escuchar eventos de teclado o ratón
-		fj.verificar_eventos(ai_configuraciones, pantalla, nave, balas)
+		fj.verificar_eventos(ai_configuraciones, pantalla, estadisticas, play_button, nave, aliens, balas)
 		
 		if estadisticas.game_active:
 			nave.update()
 			fj.update_balas(ai_configuraciones, pantalla, nave, aliens, balas)
 			fj.update_aliens(ai_configuraciones, estadisticas, pantalla, nave, aliens, balas)
 
-		fj.actualizar_pantalla(ai_configuraciones, pantalla, nave, aliens, balas)
+		fj.actualizar_pantalla(ai_configuraciones, pantalla, estadisticas, nave, aliens, balas, play_button)
 
 run_game()
