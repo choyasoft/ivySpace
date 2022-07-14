@@ -38,7 +38,7 @@ def run_game():
 	while True:
 
 		# Escuchar eventos de teclado o ratón
-		fj.verificar_eventos(ai_configuraciones, pantalla, estadisticas, play_button, nave, aliens, balas)
+		fj.verificar_eventos(ai_configuraciones, pantalla, estadisticas, marcador, play_button, nave, aliens, balas)
 		
 		if estadisticas.game_active:
 			nave.update()
