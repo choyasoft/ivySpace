@@ -22,6 +22,8 @@ class Configuraciones():
 		
 		# Aceleración del juego tras pasar de nivel
 		self.escala_aceleracion = 1.3
+		# Aceleracion de los valores de score por nivel
+		self.escala_puntaje = 1.5
 
 		self.inicializa_configuraciones_dinamicas()
 
@@ -33,9 +35,14 @@ class Configuraciones():
 
 		# fleet_direction, cuando es 1 representa a la derecha. Cuando es -1 rep a la izquierda.
 		self.fleet_direction = 1
+		# Puntuación
+		self.puntos_alien = 50
 
 	def aumentar_velocidad(self):
-		"""Aumenta la configuración de velocidad"""
+		"""Aumenta la configuración de velocidad y los valores de puntos por enemigos"""
 		self.factor_velocidad_nave *= self.escala_aceleracion
 		self.bala_factor_velocidad *= self.escala_aceleracion
 		self.alien_speed_factor *= self.escala_aceleracion
+
+		self.puntos_alien = int(self.puntos_alien * self.escala_puntaje)
+		print(self.puntos_alien)

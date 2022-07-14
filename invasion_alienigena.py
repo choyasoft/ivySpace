@@ -42,7 +42,8 @@ def run_game():
 		
 		if estadisticas.game_active:
 			nave.update()
-			fj.update_balas(ai_configuraciones, pantalla, nave, aliens, balas)
+			fj.update_balas(ai_configuraciones, pantalla, 
+				estadisticas, marcador, nave, aliens, balas)
 			fj.update_aliens(ai_configuraciones, estadisticas, pantalla, nave, aliens, balas)
 
 		fj.actualizar_pantalla(ai_configuraciones, pantalla, estadisticas, 
