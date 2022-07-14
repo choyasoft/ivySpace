@@ -30,8 +30,8 @@ def run_game():
 		# Escuchar eventos de teclado o ratón
 		fj.verificar_eventos(ai_configuraciones, pantalla, nave, balas)
 		nave.update()
-		fj.update_balas(aliens, balas)
-		fj.update_aliens(ai_configuraciones, aliens)
+		fj.update_balas(ai_configuraciones, pantalla, nave, aliens, balas)
+		fj.update_aliens(ai_configuraciones, nave, aliens)
 		fj.actualizar_pantalla(ai_configuraciones, pantalla, nave, aliens, balas)
 
 run_game()

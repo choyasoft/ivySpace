@@ -47,7 +47,7 @@ def actualizar_pantalla(ai_configuraciones, pantalla, nave, aliens, balas):
 	# Hacer visible la pantalla dibujada más reciente		
 	pygame.display.flip()
 
-def update_balas(aliens, balas):
+def update_balas(ai_configuraciones, pantalla, nave, aliens, balas):
 	"""Docstring Actualiza la posición de las balas y elimina las antiguas"""
 	# Actualiza las posiciones de las balas
 	balas.update()
@@ -56,10 +56,18 @@ def update_balas(aliens, balas):
 	for bala in balas.copy():
 		if bala.rect.bottom <= 0:
 			balas.remove(bala)
+	check_bala_alien_collisions(ai_configuraciones, pantalla, nave, aliens, balas)
 
+def check_bala_alien_collisions(ai_configuraciones, pantalla, nave, aliens, balas):
+	"""Responde a las colisiones entre balas y aliens"""
+	# Elimina las balas y los enemigos que hayan colisionado
 	# Comprueba si hay balas que hayan tocado enemigos
 	# Si es asi, desaparece la bala y el enemigo
 	collisions = pygame.sprite.groupcollide(balas, aliens, True, True)
+	if len(aliens) == 0:
+		# Destruye las balas existentes y crea una nueva flota
+		balas.empty()
+		crear_flota(ai_configuraciones, pantalla, nave, aliens)
 
 
 def fuego_bala(ai_configuraciones, pantalla, nave, balas):
@@ -116,7 +124,11 @@ def change_fleet_direction(ai_configuraciones, aliens):
 		alien.rect.y += ai_configuraciones.fleet_drop_speed
 		ai_configuraciones.fleet_direction *= -1
 
-def update_aliens(ai_configuraciones, aliens):
+def update_aliens(ai_configuraciones, nave, aliens):
 	"""Comprueba si la flota está al borde y actualiza las posiciones de todos los enemigos de la flota"""
 	check_fleet_edges(ai_configuraciones, aliens)
 	aliens.update()
+
+	# Busca colisiones de enemigo-nave
+	if pygame.sprite.spritecollideany(nave, aliens):
+		print("¡La nave ha recibido daños!")
