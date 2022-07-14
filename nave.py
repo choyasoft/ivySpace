@@ -2,12 +2,13 @@ import pygame
 from pygame.sprite import Sprite
 
 
-class Nave():
+class Nave(Sprite):
 	"""Docstring. Sirve para gestionar el comportamiento de la nave"""
 
 	def __init__(self, ai_configuraciones, pantalla):
 		""" Inicializa la nave y establece su posición de inicio """
-
+		super(Nave, self).__init__()
+	
 		self.pantalla = pantalla
 		self.ai_configuraciones = ai_configuraciones
 

@@ -1,6 +1,8 @@
 import pygame.font
 from pygame.sprite import Group
 
+from nave import Nave
+
 class Marcador():
 	"""Una clase que muestra puntuación"""
 
@@ -65,9 +67,10 @@ class Marcador():
 			nave.rect.y = 10
 			self.naves.add(nave)
 
-
 	def muestra_puntaje(self):
 		"""Dibuja el score en la pantalla"""
 		self.pantalla.blit(self.puntaje_imagen, self.puntaje_rect)
 		self.pantalla.blit(self.alto_puntaje_imagen, self.alto_puntaje_rect)
 		self.pantalla.blit(self.nivel_imagen, self.nivel_rect)
+		# Dibuja las naves restantes
+		self.naves.draw(self.pantalla)
