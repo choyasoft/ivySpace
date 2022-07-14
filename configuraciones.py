@@ -12,7 +12,7 @@ class Configuraciones():
 		self.cantidad_naves = 3
 
 		# Configuraciones de balas
-		self.bala_width = 350
+		self.bala_width = 3
 		self.bala_height = 15
 		self.bala_color = 60, 60, 60
 		self.balas_allowed = 3
