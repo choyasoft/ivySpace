@@ -44,7 +44,7 @@ def check_play_button(ai_configuraciones, pantalla, estadisticas, play_button, n
 	if button_clicked and not estadisticas.game_active:
 		# Restablece la config del juego
 		ai_configuraciones.inicializa_configuraciones_dinamicas()
-		
+
 		# Ocultar el cursor del mouse
 		pygame.mouse.set_visible(False)
 
@@ -62,7 +62,8 @@ def check_play_button(ai_configuraciones, pantalla, estadisticas, play_button, n
 
 
 
-def actualizar_pantalla(ai_configuraciones, pantalla, estadisticas, nave, aliens, balas, play_button):
+def actualizar_pantalla(ai_configuraciones, pantalla, estadisticas, 
+	marcador, nave, aliens, balas, play_button):
 	"""Actualiza las imágenes en la pantalla y pasa a la nueva pantalla"""
 
 	# Volver a dibujar la pantalla durante cada pasada de bucle
@@ -72,6 +73,10 @@ def actualizar_pantalla(ai_configuraciones, pantalla, estadisticas, nave, aliens
 		bala.draw_bala()
 	nave.blitme()
 	aliens.draw(pantalla)
+
+	# Dibuja la info de score
+
+	marcador.muestra_puntaje()
 
 	# Dibuja el botón de Play si el juego está inactivo
 	if not estadisticas.game_active:
