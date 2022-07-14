@@ -40,7 +40,11 @@ def verificar_eventos(ai_configuraciones, pantalla, estadisticas, play_button, n
 
 def check_play_button(ai_configuraciones, pantalla, estadisticas, play_button, nave, aliens, balas, mouse_x, mouse_y):
 	"""Inicia la partida cuando el jugador pulsa en Play"""
-	if play_button.rect.collidepoint(mouse_x, mouse_y):
+	button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
+	if button_clicked and not estadisticas.game_active:
+		# Ocultar el cursor del mouse
+		pygame.mouse.set_visible(False)
+
 		# Restablece las estadísticas del juego
 		estadisticas.reset_stats()
 		estadisticas.game_active = True
@@ -169,6 +173,7 @@ def nave_golpeada(ai_configuraciones, estadisticas, pantalla, nave, aliens, bala
 		sleep(0.5)
 	else:
 		estadisticas.game_active = False
+		pygame.mouse.set_visible(True)
 
 
 def check_aliens_bottom(ai_configuraciones, estadisticas, pantalla, nave, aliens, balas):
